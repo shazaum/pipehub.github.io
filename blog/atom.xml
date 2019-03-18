@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://pipehub.github.io/blog</id>
-    <title>Test Site Blog</title>
+    <title>PipeHub Blog</title>
     <updated>2017-10-24T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://pipehub.github.io/blog"/>
-    <subtitle>The best place to stay up-to-date with the latest Test Site news and events.</subtitle>
+    <subtitle>The best place to stay up-to-date with the latest PipeHub news and events.</subtitle>
     <logo>https://pipehub.github.io/img/docusaurus.svg</logo>
     <rights>Copyright © 2019 Your Name or Your Company Name</rights>
     <entry>
