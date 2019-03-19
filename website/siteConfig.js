@@ -23,7 +23,7 @@ const users = [
 const siteConfig = {
   title: 'PipeHub',
   tagline: 'A programmable proxy',
-  url: 'https://pipehub.github.io',
+  url: 'https://pipehub.io',
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
