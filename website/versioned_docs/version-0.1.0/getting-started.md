@@ -8,13 +8,15 @@ original_id: introduction
 A programmable proxy server.
 Please, don't use it in production **yet**! It's nowhere near stable and changing too much.
 
-## Why?
-Software development is getting harder and harder, on a typical medium/large solution there are lot's of servers at the data path: API Gateways, Load balancers, Cache servers, Proxies, and Firewalls, just to name a few. These generate latency and require much more engineering and monitoring to do it right.
+## Why
+Software development is getting harder and harder, on a typical medium/large solution there are lot's of servers at the data path: API Gateways, Load balancers, Cache servers, Proxies, and Firewalls, just to name a few. These servers generate latency and require much more engineering and monitoring to do it right.
 
-The core idea of this project is to do more with less. PipeHub being a programmable proxy allow users to extend and customize it as needed. Features found in other servers can be added with Go packages instead of actual external services.
+The core idea of this project is to do more with less. PipeHub being a programmable proxy allow users to extend and customize it as needed. Features found in other servers can be added with Go packages.
 
-## How?
-The code is extended with a thing called `pipe`. It's a plain old Go code that is injected at compile time at the application. Being a Go project gives much higher flexibility because it can really be anything.
+If your requirement is covered by built-in features present on other servers like Nginx and Caddy, you're better of with then. PipeHub shines when you need to add logic that traverses the responsibility of multiple servers like by an HTTP query string, you can choose the server that gonna receive the request and the response can be cached or not. Also is very useful to do deep customizations that are not allowed by other servers, mainly because they are config based. And the best of all, it's done at the same server.
+
+## How
+The code is extended with a thing called `pipe`. It's a plain old Go code that is injected at compile time at the application.
 
 Bellow a configuration sample:
 ```hcl
@@ -31,8 +33,8 @@ host {
 }
 
 handler {
-  path    = "github.com/pipehub/handler"
-  version = "v0.6.0"
+  path    = "github.com/pipehub/sample"
+  version = "v0.8.1"
   alias   = "base"
 }
 ```
@@ -41,7 +43,7 @@ The pipe points to the place where the Go code is, it should be a `go gettable` 
 
 A real example of a pipe can be found [here](https://github.com/pipehub/sample).
 
-## How to run it?
+## How to run it
 First, create a config file:
 ```bash
 cp cmd/pipehub/pipehub/pipehub.sample.hcl cmd/pipehub/pipehub/pipehub.hcl
@@ -58,7 +60,7 @@ Execute it:
 ./cmd/pipehub/pipehub start -c ./cmd/pipehub/pipehub.hcl
 ```
 
-It's also possible to build from a docker image, just need to pass the config and a directory where the binary gonna be writed:
+It's also possible to build from a docker image, just need to pass the config and a directory where the binary gonna be written:
 ```bash
 docker run --rm -v $(pwd)/pipehub.hcl:/pipehub.hcl -v $(pwd):/pipehub/output pipehub/build:0.1.0
 ```
