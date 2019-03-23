@@ -43,7 +43,7 @@ The pipe points to the place where the Go code is, it should be a `go gettable` 
 
 A real example of a pipe can be found [here](https://github.com/pipehub/sample).
 
-## How to run it
+## Running
 First, create a config file:
 ```bash
 cp cmd/pipehub/pipehub/pipehub.sample.hcl cmd/pipehub/pipehub/pipehub.hcl
