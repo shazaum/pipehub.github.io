@@ -8,18 +8,6 @@
 // See https://docusaurus.io/docs/site-config for all the possible
 // site configuration options.
 
-// List of projects/orgs using your project for the users page.
-const users = [
-  {
-    caption: 'User1',
-    // You will need to prepend the image path with your baseUrl
-    // if it is not '/', like: '/test-site/img/pipe.svg'.
-    image: '/img/pipe.svg',
-    infoLink: 'https://www.facebook.com',
-    pinned: true,
-  },
-];
-
 const siteConfig = {
   title: 'PipeHub',
   tagline: 'A programmable proxy',
@@ -41,9 +29,6 @@ const siteConfig = {
   headerLinks: [
     { doc: 'introduction', label: 'Docs' },
   ],
-
-  // If you have users set above, you add it here:
-  users,
 
   /* path to images for header/footer */
   headerIcon: 'img/pipe.svg',
