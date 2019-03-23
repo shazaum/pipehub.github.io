@@ -44,6 +44,8 @@ The pipe points to the place where the Go code is, it should be a `go gettable` 
 A real example of a pipe can be found [here](https://github.com/pipehub/sample).
 
 ## Running
+First, you need to define a host at `/etc/hosts` so PipeHub can get the request. If you're using the config example, you should define: `google 127.0.0.1`.
+
 ### From source
 > Please, note that this project is at constant evolution, the master branch may be broken or the provided examples may be different. For a more accurate documentation access https://pipehub.io/docs/next/introduction.
 >
@@ -82,3 +84,12 @@ Execute it:
 ```bash
 pipehub start -c pipehub.hcl
 ```
+
+---
+The result doing the request should be this:
+![Request](/docs/assets/execution/insomnia.png)
+
+At the terminal you should get something like this:
+![Response](/docs/assets/execution/terminal.png)
+
+The `github.com/pipehub/sample` pipe only count the time a request took to be processed.
