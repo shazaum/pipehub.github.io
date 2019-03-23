@@ -44,6 +44,11 @@ The pipe points to the place where the Go code is, it should be a `go gettable` 
 A real example of a pipe can be found [here](https://github.com/pipehub/sample).
 
 ## Running
+### From source
+> Please, note that this project is at constant evolution, the master branch may be broken or the provided examples may be different. For a more accurate documentation access https://pipehub.io/docs/next/introduction.
+>
+> If you want a stable build, take a look at the Docker section.
+
 First, create a config file:
 ```bash
 cp cmd/pipehub/pipehub/pipehub.sample.hcl cmd/pipehub/pipehub/pipehub.hcl
@@ -60,6 +65,7 @@ Execute it:
 ./cmd/pipehub/pipehub start -c ./cmd/pipehub/pipehub.hcl
 ```
 
+### From Docker
 It's also possible to build from a docker image, just need to pass the config and a directory where the binary gonna be written:
 ```bash
 docker run --rm -v $(pwd)/pipehub.hcl:/pipehub.hcl -v $(pwd):/pipehub/output pipehub/build:0.1.0
@@ -71,3 +77,8 @@ docker run --rm -e GOOS=darwin -e GOARCH=amd64 -v $(pwd)/pipehub.hcl:/pipehub.hc
 ```
 
 All the possible `GOOS` and `GOARCH` can be found [here](https://golang.org/doc/install/source#environment).
+
+Execute it:
+```bash
+pipehub start -c pipehub.hcl
+```
