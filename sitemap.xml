@@ -4,4 +4,5 @@
 <url> <loc>https://pipehub.io/versions</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://pipehub.io/en/versions" /> </url>
 <url> <loc>https://pipehub.io/docs/next/introduction</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://pipehub.io/docs/next/introduction" /> </url>
 <url> <loc>https://pipehub.io/docs/introduction</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://pipehub.io/docs/introduction" /> </url>
+<url> <loc>https://pipehub.io/docs/overview</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://pipehub.io/docs/overview" /> </url>
 </urlset>
