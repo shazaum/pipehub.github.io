@@ -57,28 +57,40 @@ Please, don't use it in production <strong>yet</strong>! It's nowhere near stabl
 <p>The core idea of this project is to do more with less. PipeHub being a programmable proxy allow users to extend and customize it as needed. Features found in other servers can be added with Go packages.</p>
 <p>If your requirement is covered by built-in features present on other servers like Nginx and Caddy, you're better of with then. PipeHub shines when you need to add logic that traverses the responsibility of multiple servers like by an HTTP query string, you can choose the server that gonna receive the request and the response can be cached or not. Also is very useful to do deep customizations that are not allowed by other servers, mainly because they are config based. And the best of all, it's done at the same server.</p>
 <h2><a class="anchor" aria-hidden="true" id="how"></a><a href="#how" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How</h2>
-<p>The code is extended with a thing called <code>handler</code>. It's a plain old Go code that is injected at compile time at the application.</p>
+<p>The code is extended with a thing called <code>pipe</code>. It's a plain old Go code that is injected at compile time at the application.</p>
 <p>Bellow a configuration sample:</p>
-<pre><code class="hljs css language-hcl">server {
+<pre><code class="hljs css language-hcl">core {
+  graceful-shutdown = <span class="hljs-string">"10s"</span>
+
   http {
-   <span class="hljs-built_in"> port </span>= 80
+   <span class="hljs-built_in"> server </span>{
+      listen {
+       <span class="hljs-built_in"> port </span>= 80
+      }
+
+      action {
+        not-found = <span class="hljs-string">"base.NotFound"</span>
+        panic     = <span class="hljs-string">"base.Panic"</span>
+      }
+    }
   }
 }
 
-host {
-  endpoint = <span class="hljs-string">"google"</span>
-  origin   = <span class="hljs-string">"https://www.google.com"</span>
-  handler  = <span class="hljs-string">"base.Default"</span>
+http <span class="hljs-string">"google"</span> {
+  handler = <span class="hljs-string">"base.Default"</span>
 }
 
-handler {
-  path    = <span class="hljs-string">"github.com/pipehub/sample"</span>
-  version = <span class="hljs-string">"v0.8.1"</span>
+pipe <span class="hljs-string">"github.com/pipehub/sample"</span> {
+  version = <span class="hljs-string">"v0.9.0"</span>
   alias   = <span class="hljs-string">"base"</span>
+
+ <span class="hljs-built_in"> config </span>{
+    host = <span class="hljs-string">"https://www.google.com"</span>
+  }
 }
 </code></pre>
-<p>The handler points to the place where the Go code is, it should be a <code>go gettable</code> project. A handler is a generic processor that can be used on multiple hosts. A host track the endpoint the proxy gonna listen, where the origin is, and which handler gonna be used to process the requests.</p>
-<p>A real example of a handler can be found <a href="https://github.com/pipehub/sample">here</a>.</p>
+<p>The pipe points to the place where the Go code is, it should be a <code>go gettable</code> project. A pipe is a generic processor that can be used on multiple hosts. A host track the endpoint the proxy gonna listen, where the origin is, and which pipe gonna be used to process the requests.</p>
+<p>A real example of a pipe can be found <a href="https://github.com/pipehub/sample">here</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="running"></a><a href="#running" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running</h2>
 <p>First, you need to define a host at <code>/etc/hosts</code> so PipeHub can get the request. If you're using the config example, you should define: <code>google 127.0.0.1</code>.</p>
 <h3><a class="anchor" aria-hidden="true" id="from-source"></a><a href="#from-source" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>From source</h3>
@@ -112,5 +124,5 @@ handler {
 <img src="/docs/assets/execution/insomnia.png" alt="Request"></p>
 <p>At the terminal you should get something like this:
 <img src="/docs/assets/execution/terminal.png" alt="Response"></p>
-<p>The <code>github.com/pipehub/sample</code> handler only count the time a request took to be processed.</p>
+<p>The <code>github.com/pipehub/sample</code> pipe only count the time a request took to be processed.</p>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/overview"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#why">Why</a></li><li><a href="#how">How</a></li><li><a href="#running">Running</a><ul class="toc-headings"><li><a href="#from-source">From source</a></li><li><a href="#from-docker">From Docker</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 PipeHub</section></footer></div></body></html>
