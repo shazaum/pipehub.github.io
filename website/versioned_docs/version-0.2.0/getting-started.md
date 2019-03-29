@@ -1,11 +1,11 @@
 ---
-id: version-0.1.0-introduction
+id: version-0.2.0-introduction
 title: Getting Started
 sidebar_label: Getting Started
 original_id: introduction
 ---
 
-A programmable proxy server.  
+A programmable proxy server.
 Please, don't use it in production **yet**! It's nowhere near stable and changing too much.
 
 ## Why
