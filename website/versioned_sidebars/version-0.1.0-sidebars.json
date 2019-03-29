@@ -3,7 +3,7 @@
     "Introduction": [
       "version-0.1.0-introduction"
     ],
-    "Pipe": [
+    "Handler": [
       "version-0.1.0-overview",
       "version-0.1.0-installing"
     ]

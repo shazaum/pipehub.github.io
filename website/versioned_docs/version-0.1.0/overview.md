@@ -5,10 +5,10 @@ sidebar_label: Overview
 original_id: overview
 ---
 
-Pipe is the unit of code that enables all the extensibility of PipeHub.
+Handler is the unit of code that enables all the extensibility of PipeHub.
 
 ## Code
-Bellow a sample code with all the possibilities of a Pipe.
+Bellow a sample code with all the possibilities of a Handler.
 
 ```golang
 type Client struct{}
@@ -66,7 +66,7 @@ func (Client) Close(ctx context.Context) error {
 }
 ```
 
-`Close` enable the possibility to gracefully close the pipe and its resources.
+`Close` enable the possibility to gracefully close the handler and its resources.
 
 ### Panic
 ```golang
@@ -81,7 +81,7 @@ func (Client) Panic(next http.Handler) http.Handler {
 It's possible to register a custom panic function to handle any kind of panic caught by PipeHub.
 
 ### NotFound
-Is also possible to register a function to handle not found endpoints. If you're trying to access a host that doesn't have any kind of pipe associated, this function, if present, gonna be invoked.
+Is also possible to register a function to handle not found endpoints. If you're trying to access a host that doesn't have any kind of handler associated, this function, if present, gonna be invoked.
 
 ```golang
 func (Client) NotFound(w http.ResponseWriter, r *http.Request) {
@@ -90,7 +90,7 @@ func (Client) NotFound(w http.ResponseWriter, r *http.Request) {
 ```
 
 ### Handler
-This is the most important function in a Pipe. All the traffic pass through this function.
+This is the most important function in a Handler. All the traffic pass through this function.
 
 ```golang
 func (Client) Default(next http.Handler) http.Handler {
@@ -102,23 +102,23 @@ func (Client) Default(next http.Handler) http.Handler {
 ```
 
 ## Execution Flow
-![Execution Flow](/docs/assets/execution-flow.png)
+![Execution Flow](/docs/assets/0.1.0/execution-flow.png)
 
 **Step 1:** The client does a request at PipeHub.
 
-**Step 2:** The request is redirected to the Pipe configured to handle the request.
+**Step 2:** The request is redirected to the Handler configured to handle the request.
 
-**Step 3:** Pipe has 3 options now:
+**Step 3:** Handler has 3 options now:
   * Change the request and return the execution flow to PipeHub
   * Do an early return and return the execution flow to PipeHub preventing the step 4 of happening
   * Return the execution flow to the PipeHub without any modification
 
 **Step 4:** PipeHub send the request to the origin server.
 
-**Step 5:** PipeHub send the response from `step 4` into the Pipe again.
+**Step 5:** PipeHub send the response from `step 4` into the Handler again.
 
-**Step 7:** Pipe has 2 options now:
+**Step 7:** Handler has 2 options now:
   * Change the response and return the execution flow to PipeHub
   * Return the execution flow to the PipeHub without any modification
 
-**Step 7:** PipeHub send the response to the client.  
+**Step 7:** PipeHub send the response to the client.

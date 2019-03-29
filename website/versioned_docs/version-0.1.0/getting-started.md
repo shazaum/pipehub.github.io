@@ -16,7 +16,7 @@ The core idea of this project is to do more with less. PipeHub being a programma
 If your requirement is covered by built-in features present on other servers like Nginx and Caddy, you're better of with then. PipeHub shines when you need to add logic that traverses the responsibility of multiple servers like by an HTTP query string, you can choose the server that gonna receive the request and the response can be cached or not. Also is very useful to do deep customizations that are not allowed by other servers, mainly because they are config based. And the best of all, it's done at the same server.
 
 ## How
-The code is extended with a thing called `pipe`. It's a plain old Go code that is injected at compile time at the application.
+The code is extended with a thing called `handler`. It's a plain old Go code that is injected at compile time at the application.
 
 Bellow a configuration sample:
 ```hcl
@@ -39,9 +39,9 @@ handler {
 }
 ```
 
-The pipe points to the place where the Go code is, it should be a `go gettable` project. A pipe is a generic processor that can be used on multiple hosts. A host track the endpoint the proxy gonna listen, where the origin is, and which handler gonna be used to process the requests.
+The handler points to the place where the Go code is, it should be a `go gettable` project. A handler is a generic processor that can be used on multiple hosts. A host track the endpoint the proxy gonna listen, where the origin is, and which handler gonna be used to process the requests.
 
-A real example of a pipe can be found [here](https://github.com/pipehub/sample).
+A real example of a handler can be found [here](https://github.com/pipehub/sample).
 
 ## Running
 First, you need to define a host at `/etc/hosts` so PipeHub can get the request. If you're using the config example, you should define: `google 127.0.0.1`.
@@ -92,4 +92,4 @@ The result doing the request should be this:
 At the terminal you should get something like this:
 ![Response](/docs/assets/execution/terminal.png)
 
-The `github.com/pipehub/sample` pipe only count the time a request took to be processed.
+The `github.com/pipehub/sample` handler only count the time a request took to be processed.
