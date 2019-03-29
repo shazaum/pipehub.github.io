@@ -23,7 +23,7 @@ PipeHub uses this function to fetch its handlers. Also, note the built tag on to
 To add a handler, first, the config file should be changed with something like this:
 ```
 handler {
-  path    = "github.com/pipehub/handler"
+  path    = "github.com/pipehub/sample"
   version = "v0.8.1"
   alias   = "base"
 }
