@@ -6,4 +6,7 @@
 <url> <loc>https://pipehub.io/docs/introduction</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://pipehub.io/docs/introduction" /> </url>
 <url> <loc>https://pipehub.io/docs/installing</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://pipehub.io/docs/installing" /> </url>
 <url> <loc>https://pipehub.io/docs/overview</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://pipehub.io/docs/overview" /> </url>
+<url> <loc>https://pipehub.io/docs/0.1.0/introduction</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://pipehub.io/docs/0.1.0/introduction" /> </url>
+<url> <loc>https://pipehub.io/docs/0.1.0/installing</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://pipehub.io/docs/0.1.0/installing" /> </url>
+<url> <loc>https://pipehub.io/docs/0.1.0/overview</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://pipehub.io/docs/0.1.0/overview" /> </url>
 </urlset>
