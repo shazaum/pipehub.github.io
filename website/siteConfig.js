@@ -7,8 +7,8 @@ const siteConfig = {
   organizationName: 'pipehub',
   cname: 'pipehub.io',
   headerLinks: [
-    { href: "https://github.com/pipehub/pipehub", label: "Source code" },
     { doc: 'introduction', label: 'Documentation' },
+    { href: "https://github.com/pipehub/pipehub", label: "Source code" },
     { page: 'credit', label: 'Credit' },
   ],
   headerIcon: 'img/pipe.svg',
