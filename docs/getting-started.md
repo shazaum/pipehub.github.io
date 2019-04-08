@@ -42,8 +42,8 @@ A real example of a pipe can be found [here](https://github.com/pipehub/sample).
 ## How to run it?
 First, create a config file:
 ```bash
-cp cmd/pipehub/pipehub/pipehub.sample.hcl cmd/pipehub/pipehub/pipehub.hcl
-# edit cmd/pipehub/pipehub/pipehub.hcl
+cp cmd/pipehub/pipehub.sample.hcl cmd/pipehub/pipehub.hcl
+# edit cmd/pipehub/pipehub.hcl
 ```
 
 Generate the binary:
