@@ -53,8 +53,8 @@ First, you need to define a host at `/etc/hosts` so PipeHub can get the request.
 
 First, create a config file:
 ```bash
-cp cmd/pipehub/pipehub/pipehub.sample.hcl cmd/pipehub/pipehub/pipehub.hcl
-# edit cmd/pipehub/pipehub/pipehub.hcl
+cp cmd/pipehub/pipehub.sample.hcl cmd/pipehub/pipehub.hcl
+# edit cmd/pipehub/pipehub.hcl
 ```
 
 Generate the binary:
